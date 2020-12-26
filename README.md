@@ -24,9 +24,8 @@ Please consider the setup:
 7. Next type on terminal "python manage.py makemigrations"
 8. Next type on terminal "python manage.py migrate"
 9. Next type on terminal "python manage.py runserver"
-  After creating superuser type "python manage.py runserver command and click on http://127.0.0.1:8000/.
-  
-after running above commands project successfully builds and click on the  http://127.0.0.1:8000/.Refresh the page and the setup is ready. 
-   
 
-Thank you.
+After creating superuser type "python manage.py runserver command and click on http://127.0.0.1:8000/.
+  
+   
+ Thank you.
