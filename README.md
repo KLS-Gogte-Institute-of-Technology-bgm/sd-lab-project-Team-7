@@ -2,7 +2,9 @@
 Ecommerce website created by GitHub Classroom
 
 Programming Language Used:Python,HTML,CSS,JAVA SCRIPT
+
 Framework Used : Django
+
 Database : sqlite3
 
 
@@ -18,11 +20,10 @@ Please consider the setup:
 4. Next type on terminal "pip install pycryptodome"
 5. next type on terminal "pip install PayTm"
 6. Go to mysite/shop/views.py Add your Merchant Id and Merchant key(at line 13 and line no 122 respectively)   
-   
-7. After creating superuser, type on terminal again
-8. Next type on terminal "python manage.py makemigrations"
-9. Next type on terminal "python manage.py migrate"
-10. Next type on terminal "python manage.py runserver"
+
+7. Next type on terminal "python manage.py makemigrations"
+8. Next type on terminal "python manage.py migrate"
+9. Next type on terminal "python manage.py runserver"
   After creating superuser type "python manage.py runserver command and click on http://127.0.0.1:8000/.
   
 after running above commands project successfully builds and click on the  http://127.0.0.1:8000/.Refresh the page and the setup is ready. 
