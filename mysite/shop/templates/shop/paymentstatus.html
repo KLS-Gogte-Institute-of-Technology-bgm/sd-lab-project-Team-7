@@ -1,0 +1,107 @@
+{% extends 'shop/basic.html' %}
+{% block title%} My Awesome Cart Tracker{% endblock %}
+{% block body %}
+<div class="container">
+
+
+  <div class="col my-4">
+        <h2>Payment Status Regarding your order Id {{response.ORDERID}}</h2>
+        {% if response.RESPCODE == '01' %}
+         <div class="col my-4">
+        <h3>Your Order Items Shown Bellow</h3>
+        <div class="my-4">
+            <ul class="list-group" id="items">
+            </ul>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mt-3">
+        <li class="breadcrumb-item active" aria-current="page">Your Total Price Is <b>Rs. <span id="totalPrice"></span></b></li>
+      </ol>
+    </nav>
+     </div>
+         </div>
+  </div>
+    <table border = "1" style = "position:relative; left:30px; top:2px;">
+                <div style = "position:relative; left:30px; top:2px; ">
+         <h3>Your Transaction details Shown Bellow</h3>
+      </div>
+             <tr>
+                 <th colspan="1">Transactions Details</th>
+            </tr>
+            <tr>
+                <th>Trasaction Date :{{response.TXNDATE}}</th>
+            </tr>
+            <tr>
+                <th>Trasaction Id :{{response.TXNID}}</th>
+            </tr>
+            <tr>
+                <th>Trasaction Amount:{{response.TXNAMOUNT}}</th>
+            </tr>
+            <tr>
+                <th>Order Id :{{response.ORDERID}}</th>
+            </tr>
+    </table>
+    <div style = "position:relative; left:155px; top:15px; ">
+        <a href="#" class="printPage"><button  class="btn btn-primary cart">Print Now</button></a>
+    </div>
+
+     {% else %}
+        ORDER FAILURE
+        {% endif %}
+</div>
+<div>
+
+</div>
+{% endblock %}
+{% block js %}
+<script>
+$('a.printPage').click(function(){
+           window.print();
+           return false;
+});
+if (localStorage.getItem('cart') == null) {
+    var cart = {};
+} else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
+console.log(cart);
+var sum = 0;
+var totalPrice = 0;
+if ($.isEmptyObject(cart)) {
+    //if object is empty
+    mystr = `<p>Your cart is empty, please add some items to your cart before checking out!</p>`
+    $('#items').append(mystr);
+} else {
+    for (item in cart) {
+        let name = cart[item][1];
+        let qty = cart[item][0];
+        let itemPrice = cart[item][2];
+        sum = sum + qty;
+        totalPrice = totalPrice + qty * itemPrice
+        mystr = `<li class="list-group-item d-flex justify-content-between align-items-center">
+                    <h4><b>${name}</b></h4> <h4><b>${itemPrice}</b> </h4>
+                    <span class="badge badge-primary badge-pill"><b>${qty}</b></span>
+                </li>`
+        $('#items').append(mystr);
+        console.log(totalPrice);
+    }
+}
+document.getElementById('cart').innerHTML = sum;
+document.getElementById('totalPrice').innerHTML = totalPrice;
+$('#itemsJson').val(JSON.stringify(cart));
+{% if thank %}
+alert('Thanks for ordering with us. Your order is {{id}}. Use it to track your order using our order tracker');
+localStorage.clear();
+document.location = "/shop";
+{% endif %}
+$('#amount').val($('#totalPrice').html())
+function clearCart() {
+    cart = JSON.parse(localStorage.getItem('cart'));
+    for (var item in cart) {
+        document.getElementById('div' + item).innerHTML = '<button id="' + item + '" class="btn btn-primary cart">Add To Cart</button>'
+    }
+    localStorage.clear();
+    cart = {};
+    updateCart(cart);
+}
+</script>
+{% endblock %}

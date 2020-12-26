@@ -1,0 +1,42 @@
+{% extends 'shop/basic2.html' %}
+
+{% block body %}
+<div style="width: 1300px" class="container">
+    <div class="p-4 m-4">
+        <div class="col-lg-4 mt-4 mb-4 mx-auto border rounded pt-4">
+            <h3 class="alert alert-light border rounded">Login Here</h3>
+            <form action="/shop/login/" method="post">
+                {% csrf_token %}
+                {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <label>Email address</label>
+                    <input type="email" class="form-control form-control-sm" name="email" pattern=".+@gmail.com"
+                           placeholder="example@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control form-control-sm" name="password" placeholder="******"
+                           required>
+                </div>
+
+
+                <div style="margin-left: 130px" class="form-group">
+                    <input class="btn btn-sm btn-info col-lg-4" type="submit" value="Login">
+                </div>
+            </form>
+                    <a href="/shop/signup/">Create Account.</a>
+                    <p><a href="/shop/login/forgot/" style="display: flex;
+                             flex-direction: row-reverse;" >Forgot Password?</a></p>
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
