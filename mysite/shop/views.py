@@ -10,7 +10,7 @@ from django.contrib.auth.hashers import make_password,check_password
 from .paytm import Checksum
 from django.views import View
 
-MERCHANT_KEY = 'YOUR-MERCHANT-KEY';
+MERCHANT_KEY = 'kPON4QTZ2ZdkP3_u';
 def index(request):
     products= Product.objects.all()
     allProds=[]
@@ -50,9 +50,6 @@ def Search(request):
 def about(request):
     return render(request,'shop/about.html')
 
-def about(request):
-    return render(request,'shop/about.html')
-
 def contact(request):
     thank = False
     if request.method=="POST":
@@ -60,7 +57,6 @@ def contact(request):
         email = request.POST.get('email','')
         phone = request.POST.get('phone','')
         desc = request.POST.get('desc','')
-        print(name,email,phone,desc)
         contact = Contact(name=name,email=email,phone=phone,desc=desc)
         contact.save()
         thank = True
@@ -88,7 +84,6 @@ def tracker(request):
 
 def productview(request, myid):
     product=Product.objects.filter(id=myid)
-    print(product)
     return render(request, "shop/prodview.html", {'product':product[0]})
 
 def checkout(request):
@@ -119,7 +114,7 @@ def checkout(request):
             id = order.order_id
 
             param_dict = {
-                'MID': 'YOUR-MERCHANT-ID',
+                'MID': 'FUuxvQ92840896867495',
                 'ORDER_ID': str(order.order_id),
                 'TXN_AMOUNT': str(amount),
                 'CUST_ID': email,
