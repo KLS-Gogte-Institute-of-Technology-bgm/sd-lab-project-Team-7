@@ -10,7 +10,7 @@ from django.contrib.auth.hashers import make_password,check_password
 from .paytm import Checksum
 from django.views import View
 
-MERCHANT_KEY = 'YOUR-MERCHANT-KEY';
+MERCHANT_KEY = 'kPON4QTZ2ZdkP3_u';
 def index(request):
     products= Product.objects.all()
     allProds=[]
@@ -119,7 +119,7 @@ def checkout(request):
             id = order.order_id
 
             param_dict = {
-                'MID': 'YOUR-MERCHANT-ID',
+                'MID': 'FUuxvQ92840896867495',
                 'ORDER_ID': str(order.order_id),
                 'TXN_AMOUNT': str(amount),
                 'CUST_ID': email,
